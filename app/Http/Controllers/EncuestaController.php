@@ -73,10 +73,13 @@ class EncuestaController extends Controller
         if($request->nombre != "" and $request->isMethod('post'))
         {
             $enc = Encuesta::where('nombre', '=', $request->nombre)->where('user_id', '=', $id)->first();
-            if(count($enc) > 0){
-                $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
-                $mensaje = "La encuesta ya se encuentra registrada";
-                return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+            if ($enc != null) {
+            
+                if(count($enc) > 0){
+                    $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
+                    $mensaje = "La encuesta ya se encuentra registrada";
+                    return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+                }
             }
             $encuesta = new Encuesta;
             $encuesta->nombre = $request->nombre;
