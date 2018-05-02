@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAEA;EACI,YAAY,EACf;;AAED;EACI,mBAAmB;EACnB,iBAAiB,EACpB","file":"app.css","sourcesContent":["// @import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\n\n.body {\n    width: 100%;\n}\n\n.pull-right{\n    padding-right: 5px;\n    padding-top: 8px;\n}"]}
