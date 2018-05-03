@@ -19,4 +19,9 @@ class Encuesta extends Model
     {
         return $this->hasMany('App\Participante');
     }
+
+    public function preguntas()
+    {
+        return $this->hasMany('App\Pregunta');
+    }
 }
