@@ -75,13 +75,13 @@ class PreguntaController extends Controller
         
         $respuestas = Respuesta::all();
         
-        if(count(Encuesta::find($id)->preguntas()->first()) == 0){
+        /*if(count(Encuesta::find($id)->preguntas()->first()) == 0){
             $pregunta = new Pregunta;
             $pregunta->descripcion = "ingrese la 1ra pregunta";
             $pregunta->encuesta_id = $id;
             $pregunta->save();
            
-        }
+        }*/
         
         $preguntas = Encuesta::find($id)->preguntas()->get();
         //$encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
