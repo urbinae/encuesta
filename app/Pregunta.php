@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
 {
+    protected $table ='preguntas';
     public $fillable = ['nombre','encuesta_id'];
 
     public function respuestas()
     {
-        return $this->hasMany('App\Respuestas');
+        return $this->hasMany('App\Respuesta');
     }
 
     public function particip_preg()
@@ -25,7 +26,7 @@ class Pregunta extends Model
      */
      public function participantes()
     {
-        return $this->belongsToMany('App\Participante', 'participantes_preguntas', 'pregunta_id', 'participante_id');
+        return $this->belongsToMany('App\Participante', 'preguntas_participantes', 'preguntas_id', 'participantes_id');
 
     }
 }

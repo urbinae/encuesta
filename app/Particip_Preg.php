@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ParticipPreg extends Model
 {
-    protected $table = 'participantes_preguntas';
+    protected $table = 'preguntas_participantes';
 
 	public $timestamps = true;
 
-	public function participastes()
+	public function participantes()
 	{
 	    return $this->belongsTo('App\Participante');
 	}

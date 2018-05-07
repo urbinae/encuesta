@@ -26,7 +26,7 @@ class Participante extends Model
      */
      public function preguntas()
     {
-        return $this->belongsToMany('App\Pregunta', 'participantes_preguntas', 'participante_id', 'pregunta_id');
+        return $this->belongsToMany('App\Pregunta', 'preguntas_participantes', 'participantes_id', 'preguntas_id');
 
     }
 }
