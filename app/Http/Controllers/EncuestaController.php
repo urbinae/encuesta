@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Encuesta;
+use App\Respuesta;
 use Illuminate\Support\Facades\Auth;
 
 class EncuestaController extends Controller

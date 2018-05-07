@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
 {
-    public $fillable = ['nombre'];
-
-    public function respuestas()
-    {
-        return $this->hasMany('App\Respuestas');
-    }
+    public $fillable = ['nombre','encuesta_id'];
 
     public function respuestas()
     {

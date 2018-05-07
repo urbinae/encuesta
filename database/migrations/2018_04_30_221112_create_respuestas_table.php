@@ -15,10 +15,11 @@ class CreateRespuestasTable extends Migration
         Schema::create('respuestas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->boolean('habilitada')->default(0);
+            //$table->char('letra',1);
+            //$table->boolean('habilitada')->default(0);
             
-            $table->integer('pregunta_id')->unsigned();
-            $table->foreign('pregunta_id')->references('id')->on('preguntas');
+            //$table->integer('pregunta_id')->unsigned();
+            //$table->foreign('pregunta_id')->references('id')->on('preguntas');
             $table->timestamps();
         });
     }

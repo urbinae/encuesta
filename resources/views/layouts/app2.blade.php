@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
@@ -17,12 +18,15 @@
     <link href="/assets/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="/assets/css/blue.css" id="theme" rel="stylesheet">
+    {!! Html::style('DataTables_1.10.16/css/jquery.dataTables.min.css') !!}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
 </head>
 
 <body class="fix-header card-no-border">
@@ -207,7 +211,8 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                          <li class="nav-devider"></li>
-                        <li><a class="waves-effect waves-dark" href="index.html"><i class="mdi mdi-calendar-question"></i>Preguntas </a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('encuesta.index') }}"><i class="mdi mdi-calendar-question"></i>Encuestas</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('respuesta.index') }}"><i class="mdi mdi-calendar-question"></i>Tipo repuestas </a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -226,7 +231,7 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Encuestas</h3>
+                    <h3 class="text-themecolor">Encuestas @yield('nombreEncuesta')</h3>
                 </div>
                 
             </div>
@@ -289,6 +294,17 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+    {!! Html::script('DataTables_1.10.16/js/jquery.dataTables.min.js') !!}
+    {!! Html::script('assets/js/jquery.jeditable.js') !!}
+    <script type="text/javascript">
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+</script>
+    @yield('codigo_js')
 </body>
 
 </html>

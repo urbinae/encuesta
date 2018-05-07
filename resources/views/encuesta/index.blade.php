@@ -43,7 +43,7 @@
                                 <td>0</td>
                                 
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('encuesta.edit',$encuesta->id) }}" title="Preguntas"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                    <a class="btn btn-success" href="{{ route('encuesta.edit',$encuesta->id) }}" title="Preguntas"><i class="mdi mdi-content-paste"></i></a>
                                     <a class="btn btn-primary editar" href="#" title="Editar" data-nombre="{{$encuesta->nombre}}" data-id="{{$encuesta->id}}"><i class="glyphicon glyphicon-pencil"></i></a>
                                     {{ Form::open(['method' => 'DELETE','route' => ['encuesta.destroy', $encuesta->id],'style'=>'display:inline']) }}
                                     <button type="submit" value="Submit" class="btn btn-danger" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>

@@ -81,6 +81,7 @@
     {!! Html::script('assets/js/jquery-3.2.1.js') !!}
     {!! Html::script('assets/js/bootstrap.min.js') !!}
     {!! Html::script('DataTables_1.10.16/js/jquery.dataTables.min.js') !!}
+    {!! Html::script('assets/js/jquery.jeditable.js') !!}
     @yield('codigo_js')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>

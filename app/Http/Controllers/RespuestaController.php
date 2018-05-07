@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Respuesta;
 use Illuminate\Support\Facades\Auth;
 
 class RespuestaController extends Controller
@@ -13,7 +14,7 @@ class RespuestaController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -22,10 +23,11 @@ class RespuestaController extends Controller
     public function index(Request $request)
     {
         
+        $mensaje = "";
+        $respuestas = Respuesta::orderBy('nombre','ASC')->paginate(5);
+        return view('respuesta.index',compact('respuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
     
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
@@ -45,8 +47,29 @@ class RespuestaController extends Controller
      */
     public function store(Request $request)
     {
+        $mensaje = "";
+        $id = Auth::id();
+        //$encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
 
-        
+        if($request->nombre != "" and $request->isMethod('post'))
+        {
+            $enc = Respuesta::where('nombre', '=', $request->nombre)->first();
+            if($enc != null){
+                $respuestas = Respuesta::orderBy('nombre','ASC')->paginate(5);
+                $mensaje = "La respuesta ya se encuentra registrada";
+                return view('respuesta.index',compact('respuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+            }
+            $respuesta = new Respuesta;
+            $respuesta->nombre = $request->nombre;
+            //$respuesta->user_id = $id;
+            $respuesta->save();
+            $mensaje = "La Respuesta se creo satisfactoriamente";
+            
+            
+        }
+        $respuestas = Respuesta::orderBy('nombre','ASC')->paginate(5);
+        return view('respuesta.index',compact('respuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+    
     }
 
     /**
@@ -69,7 +92,6 @@ class RespuestaController extends Controller
     public function edit($id)
     {
         //
-        
     }
 
     /**
@@ -81,9 +103,8 @@ class RespuestaController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        //
     }
-    
 
     /**
      * Remove the specified resource from storage.
@@ -91,8 +112,8 @@ class RespuestaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy($id)
     {
-       
+        //
     }
 }
