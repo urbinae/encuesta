@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                     <tbody>
-                        @if (count($preguntas) > 0)
+                        @if ($preguntas != null)
                             @foreach ($preguntas as $key => $pregunta)
                                 <tr>
                                     <td><center>
@@ -40,7 +40,7 @@
                                     </center></td>
                                     <td><div class="dblclick" id="{{ $pregunta->id }}" data-id="{{ $pregunta->id }}">{{ $pregunta->descripcion }}</div></td>
                                     <td>{{ $pregunta->tiempo }} seg</td>
-                                    <td>{{ count($pregunta->participantes()) }}</td>
+                                    <td>{{ count($pregunta->participantes) }}</td>
                                     
                                     <td>
                                         {{ Form::open(['method' => 'DELETE','route' => ['pregunta.destroy', $pregunta->id],'style'=>'display:inline']) }}
@@ -51,12 +51,11 @@
                                 </tr>
                                 <tr background="#eeeeee"><td colspan="5">
                                     <div class="row">
-                                    @if (count($respuestas) > 0)
+                                    @if ($respuestas != null)
                                         @foreach ($letras as $key => $letra)
                                             <div class="col-xs-12 col-sm-3 text-center" >
                                             <span style="padding-right:10px;">{{$letra}}</span>
-                                            <select>
-                                                <option value="0">Seleccionar</option>
+                                            <select class="select-resp">
                                                 @foreach ($respuestas as $key => $respuesta)
                                                     
                                                          <option value="{{$respuesta->id}}">{{$respuesta->nombre}}</option>
