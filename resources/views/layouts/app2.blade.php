@@ -19,6 +19,8 @@
     <!-- You can change the theme colors from here -->
     <link href="/assets/css/blue.css" id="theme" rel="stylesheet">
     {!! Html::style('DataTables_1.10.16/css/jquery.dataTables.min.css') !!}
+
+    {!! Html::style('/plugins/select2/dist/css/select2.min.css') !!}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -297,6 +299,8 @@
 
     {!! Html::script('DataTables_1.10.16/js/jquery.dataTables.min.js') !!}
     {!! Html::script('assets/js/jquery.jeditable.js') !!}
+    {!! Html::script('plugins/select2/dist/js/select2.min.js') !!}
+    {!! Html::script('js/encuestas.js') !!}
     <script type="text/javascript">
       $.ajaxSetup({
         headers: {
