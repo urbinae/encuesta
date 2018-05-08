@@ -158,7 +158,7 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
