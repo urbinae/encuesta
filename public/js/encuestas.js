@@ -1,0 +1,1 @@
+ $('.select-resp').select2();
