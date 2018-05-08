@@ -1,1 +1,3 @@
- $('.select-resp').select2();
+ $(".select-resp").select2({
+  tags: true
+});
