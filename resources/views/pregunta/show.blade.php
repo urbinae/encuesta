@@ -45,11 +45,12 @@
                                     <td>
                                         {{ Form::open(['method' => 'DELETE','route' => ['pregunta.destroy', $pregunta->id],'style'=>'display:inline']) }}
                                         {{ Form::hidden('idEncuesta', $encuesta->id, array('id' => 'idEncuesta')) }}
-                                        <button type="submit" value="Submit" class="btn btn-danger" title="Eliminar"><i class="mdi mdi-delete-forever"></i></button>
+                                        <button type="submit" value="Submit" class="btn btn-danger btn-circle" title="Eliminar"><i class="mdi mdi-delete-forever"></i></button>
                                         {{ Form::close() }}
                                     </td>
                                 </tr>
-                                <tr background="#eeeeee"><td colspan="5">
+                                <tr>
+                                    <td colspan="5">
                                     <div class="row">
                                     @if ($respuestas != null)
                                         @foreach ($letras as $key => $letra)

@@ -33,7 +33,7 @@
                                                                 
                                 <td>
                                     
-                                    <a class="btn btn-primary editar" href="#" title="Editar" data-nombre="{{$respuesta->nombre}}" data-id="{{$respuesta->id}}"><i class="mdi mdi-content-paste"></i></a>
+                                    <a class="btn btn-primary editar" href="#" title="Editar" data-nombre="{{$respuesta->nombre}}" data-id="{{$respuesta->id}}"><i class="mdi mdi-table-edit"></i></a>
                                     {{ Form::open(['method' => 'DELETE','route' => ['respuesta.destroy', $respuesta->id],'style'=>'display:inline']) }}
                                     <button type="submit" value="Submit" class="btn btn-danger" title="Eliminar"><i class="mdi mdi-delete-forever"></i></button>
                                     {{ Form::close() }}
