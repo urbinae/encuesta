@@ -45,11 +45,13 @@ class PreguntaController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->tiempo);
         $mensaje = "Error, no se pudo crear la pregunta";
         if($request->nombre){
             $pregunta = new Pregunta;
             $pregunta->descripcion = $request->nombre;
             $pregunta->encuesta_id = $request->idEncuesta;
+            $pregunta->tiempo = $request->tiempo;
             $pregunta->save();
             $mensaje ="Pregunta creada satisfactoriamente";
             
