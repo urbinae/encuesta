@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Encuesta;
 use App\Respuesta;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class EncuestaController extends Controller
 {
@@ -148,8 +149,11 @@ class EncuestaController extends Controller
     public function destroy(Request $request,$id)
     {
         $encuesta = Encuesta::find($id);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0'); 
         $mensaje = "La encuesta ".$encuesta->nombre." fue eliminada";
         Encuesta::destroy($id);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
         return view('encuesta.dashboard',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
