@@ -21,7 +21,17 @@ Route::get('/buscarEncuesta/{id}', 'HomeController@buscarEncuesta')->name('busca
 Route::get('/realizar_encuesta/{id}', 'HomeController@encuesta')->name('realizar_encuesta');
 
 // rest para encuestas
-Route::resource('encuesta','EncuestaController');
+//Route::resource('encuesta','EncuestaController');
+Route::resource('encuestas', 'EncuestaController');
+Route::get('encuestas', [
+	'as' => 'encuestas.index',
+	'uses' => 'EncuestaController@index'
+]);
+// rest para preguntas
+Route::resource('pregunta','PreguntaController');
+
+// rest para repuesta
+Route::resource('respuesta','RespuestaController');
 
 // las encuestas para motrar en el data table
 Route::get('/indexDataTable', 'EncuestaController@indexDataTable')->name('indexDataTable');

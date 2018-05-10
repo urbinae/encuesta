@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Encuesta extends Model
 {
+    protected $table ='encuestas';
     public $fillable = ['nombre'];
 
 
@@ -18,5 +19,10 @@ class Encuesta extends Model
     public function participantes()
     {
         return $this->hasMany('App\Participante');
+    }
+
+    public function preguntas()
+    {
+        return $this->hasMany('App\Pregunta');
     }
 }

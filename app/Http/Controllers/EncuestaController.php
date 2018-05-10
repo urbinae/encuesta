@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Encuesta;
+use App\Respuesta;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class EncuestaController extends Controller
 {
@@ -37,11 +39,11 @@ class EncuestaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $mensaje = "";
         $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
-        return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i');
     
     }
 
@@ -73,13 +75,12 @@ class EncuestaController extends Controller
         if($request->nombre != "" and $request->isMethod('post'))
         {
             $enc = Encuesta::where('nombre', '=', $request->nombre)->where('user_id', '=', $id)->first();
-            if ($enc != null) {
-            
-                if(count($enc) > 0){
-                    $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
-                    $mensaje = "La encuesta ya se encuentra registrada";
-                    return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
-                }
+
+            if($enc != null){
+                $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
+                $mensaje = "La encuesta ya se encuentra registrada";
+                return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+
             }
             $encuesta = new Encuesta;
             $encuesta->nombre = $request->nombre;
@@ -101,7 +102,11 @@ class EncuestaController extends Controller
      */
     public function show($id)
     {
-        //
+        $mensaje = "";
+        $encuesta = Encuesta::find($id);
+        $respuestas = Respuesta::all();      
+        $preguntas = Encuesta::find($id)->preguntas()->get();
+        return view('encuesta.show',compact('preguntas', 'mensaje','respuestas','encuesta'))->with('i');
     }
 
     /**
@@ -150,9 +155,13 @@ class EncuestaController extends Controller
     public function destroy(Request $request,$id)
     {
         $encuesta = Encuesta::find($id);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0'); 
         $mensaje = "La encuesta ".$encuesta->nombre." fue eliminada";
         Encuesta::destroy($id);
-        $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
-        return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+        //$encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
+        //return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return redirect()->route('encuestas.index');
     }
 }
