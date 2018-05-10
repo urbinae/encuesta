@@ -35,8 +35,11 @@
                             @foreach ($preguntas as $key => $pregunta)
                                 <tr>
                                     <td><center>
-                                    <input type="radio" class="check" value="" id="habilitada{{ $pregunta->id }}" data-id="{{ $pregunta->id }}" data-descripcion="{{ $pregunta->descripcion }}" name="habilitada" data-radio="iradio_flat-blue" @if ($pregunta->habilitada == 1 ) checked @endif>
-                                    <label for="habilitada{{ $pregunta->id }}"></label>
+                                        <div class="switch">
+                                            <label>
+                                                <input type="checkbox" @if ($pregunta->habilitada == 1 ) checked @endif><span class="lever"></span></label>
+                                        </div>
+                                        
                                     </center></td>
                                     <td><div class="dblclick" id="{{ $pregunta->id }}" data-id="{{ $pregunta->id }}">{{ $pregunta->descripcion }}</div></td>
                                     <td>{{ $pregunta->tiempo }} seg</td>
@@ -81,6 +84,9 @@
                                             <span style="padding-right:10px;">D</span> <select><option>tal vez</option></select>
                                         </div>
                                     </div> --}}
+                                </tr>
+                                <tr>
+                                    <td colspan="5"> <hr></td>
                                 </tr>
                             @endforeach
                         @else
@@ -128,13 +134,18 @@
                         {{ Form::open(array('route' => 'pregunta.store', 'method' => 'post')) }}
                         <div class="modal-body" id="contentBody">
                             {{ Form::hidden('idEncuesta', $encuesta->id, array('id' => 'idEncuesta')) }}
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
+                            <div class="form-group row">
+                                <label for="nombre" class="col-md-2 col-form-label">Pregunta</label>
+                                <div class="col-md-10">
                                 {{ Form::text('nombre', '', array('id' => 'nombre', 'class' => 'form-control input-sm', 'placeholder' => 'Descripción de la pregunta')) }}
                             </div>
-                            
-                            
-                            <hr>
+                            </div>
+                            <div class="form-group row">
+                                <label for="tiempo" class="col-md-2 col-form-label">Tiempo</label>
+                                <div class="col-md-10">
+                                    {{ Form::number('tiempo', '0', array('id' => 'tiempo', 'class' => 'form-control')) }}
+                                </div>
+                            </div>
                             
                         </div>
                         <div class="modal-footer">
@@ -165,7 +176,12 @@
                                 <label for="nombre">Nombre</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control input-sm"/>
                             </div>                    
-                            <hr>
+                            <div class="form-group row">
+                                <label for="example-number-input" class="col-md-2 col-form-label">Tiempo</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="tiempo" value="42" id="tiempo-preg">
+                                </div>
+                            </div>
                             
                         </div>
                         <div class="modal-footer">
