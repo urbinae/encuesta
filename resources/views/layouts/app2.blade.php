@@ -213,7 +213,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                          <li class="nav-devider"></li>
-                        <li><a class="waves-effect waves-dark" href="{{ route('encuesta.index') }}"><i class="mdi mdi-calendar-question"></i>Encuestas</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('encuestas.index') }}"><i class="mdi mdi-calendar-question"></i>Encuestas</a></li>
                         <li><a class="waves-effect waves-dark" href="{{ route('respuesta.index') }}"><i class="mdi mdi-calendar-question"></i>Tipo repuestas </a></li>
                     </ul>
                 </nav>
@@ -233,7 +233,7 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Encuestas @yield('nombreEncuesta')</h3>
+                    <h3 class="text-themecolor">Encuesta @yield('nombreEncuesta')</h3>
                 </div>
                 
             </div>

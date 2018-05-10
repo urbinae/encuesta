@@ -21,8 +21,12 @@ Route::get('/buscarEncuesta/{id}', 'HomeController@buscarEncuesta')->name('busca
 Route::get('/realizar_encuesta/{id}', 'HomeController@encuesta')->name('realizar_encuesta');
 
 // rest para encuestas
-Route::resource('encuesta','EncuestaController');
-
+//Route::resource('encuesta','EncuestaController');
+Route::resource('encuestas', 'EncuestaController');
+Route::get('encuestas', [
+	'as' => 'encuestas.index',
+	'uses' => 'EncuestaController@index'
+]);
 // rest para preguntas
 Route::resource('pregunta','PreguntaController');
 

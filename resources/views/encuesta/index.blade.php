@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.app2')
  
 @section('content')
 
@@ -9,10 +9,7 @@
     @endif
  
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>Encuestas </h2>
-           
-        </div>
+        
         @if ($mensaje != "")
             {{-- <h2>{{$mensaje}}</h2> --}}
         @endif
@@ -38,15 +35,15 @@
                         @foreach ($encuestas as $key => $encuesta)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td><a class="" href="{{ route('encuesta.show',$encuesta->id) }}" data-nombre="{{$encuesta->nombre}}">{{ $encuesta->nombre }}</a></td>
+                                <td><a class="" href="{{ route('encuestas.index',$encuesta->id) }}" data-nombre="{{$encuesta->nombre}}">{{ $encuesta->nombre }}</a></td>
                                 <td>0</td>
                                 <td>0</td>
                                 
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('encuesta.edit',$encuesta->id) }}" title="Preguntas"><i class="mdi mdi-content-paste"></i></a>
-                                    <a class="btn btn-primary editar" href="#" title="Editar" data-nombre="{{$encuesta->nombre}}" data-id="{{$encuesta->id}}"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    {{ Form::open(['method' => 'DELETE','route' => ['encuesta.destroy', $encuesta->id],'style'=>'display:inline']) }}
-                                    <button type="submit" value="Submit" class="btn btn-danger" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <a class="btn btn-info" href="{{ route('encuestas.show',$encuesta->id) }}" title="Preguntas"><i class="mdi mdi-format-list-bulleted"></i></a>
+                                    <a class="btn btn-primary editar" href="#" title="Editar" data-nombre="{{$encuesta->nombre}}" data-id="{{$encuesta->id}}"><i class="mdi mdi-table-edit"></i></a>
+                                    {{ Form::open(['method' => 'DELETE','route' => ['encuestas.destroy', $encuesta->id],'style'=>'display:inline']) }}
+                                    <button type="submit" value="Submit" class="btn btn-danger" title="Eliminar"><i class="mdi mdi-delete-forever"></i></button>
                                     {{ Form::close() }}
                                 </td>
                             </tr>
@@ -93,7 +90,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Crear Encuesta</h4>
                 </div>
-                {{ Form::open(array('route' => 'encuesta.store', 'method' => 'post')) }}
+                {{ Form::open(array('route' => 'encuestas.store', 'method' => 'post')) }}
                 <div class="modal-body" id="contentBody">
                     
                     <div class="form-group">
@@ -125,7 +122,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Editar Encuesta</h4>
                 </div>
-                <form action="{{ route('encuesta.update','XXX') }}" method = 'put' id="formEditar">
+                <form action="{{ route('encuestas.update','XXX') }}" method = 'put' id="formEditar">
                 {{@csrf}}
                 <div class="modal-body" id="contentBody">
                     
@@ -162,7 +159,7 @@ $(document).ready( function () {
     $('.editar').click(function(e) {
         e.preventDefault();
         //alert($('#formEditar').attr('action'))
-        var newUrl = "{{ route('encuesta.update','newEdit') }}";
+        var newUrl = "{{ route('encuestas.update','newEdit') }}";
        
         newUrl = newUrl.replace('newEdit',$(this).data('id'));
 
