@@ -24,7 +24,7 @@ class PreguntaController extends Controller
      */
     public function index()
     {
-        //
+        echo "string";
     }
 
     /**
@@ -59,8 +59,7 @@ class PreguntaController extends Controller
         $respuestas = Respuesta::all();
         $encuesta = Encuesta::find($request->idEncuesta);
         $preguntas = Encuesta::find($request->idEncuesta)->preguntas()->get();
-
-        return view('pregunta.show',compact('preguntas','encuesta', 'mensaje','respuestas'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return redirect()->route('encuestas.show', $request->idEncuesta)->with('preguntas', 'mensaje','respuestas','encuesta');
     }
 
     /**
@@ -161,6 +160,6 @@ class PreguntaController extends Controller
         $encuesta   = Encuesta::find($request->idEncuesta);
         $preguntas  = Encuesta::find($request->idEncuesta)->preguntas()->get();
 
-        return view('pregunta.show',compact('preguntas','encuesta', 'mensaje','respuestas'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return redirect()->route('encuestas.show', $request->idEncuesta)->with('preguntas', 'mensaje','respuestas','encuesta');
     }
 }

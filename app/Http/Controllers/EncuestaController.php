@@ -130,7 +130,6 @@ class EncuestaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo 'ak123i';
         $encuesta = Encuesta::find($id);
         
         ///Encuesta::destroy($id);
@@ -142,7 +141,8 @@ class EncuestaController extends Controller
         }
         
         $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
-        return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+        //return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i');
+        return redirect()->route('encuestas.index');
     }
     
 

@@ -52,7 +52,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">
+                    <a class="navbar-brand" href="{{ route('encuestas.index') }}">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
@@ -86,52 +86,7 @@
                         <!-- ============================================================== -->
                         <!-- Messages -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a>
-                            <div class="dropdown-menu animated slideInUp">
-                                <ul class="mega-dropdown-menu row">
-                                    
-                                    <li class="col-lg-12 m-b-30">
-                                        <h4 class="m-b-20">PREGUNTAS</h4>
-                                        <!-- Accordian -->
-                                        <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id="headingOne">
-                                                    <h5 class="mb-0">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                  Pregunta #1
-                                                </a>
-                                              </h5> </div>
-                                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                                                    <div class="card-body"> Respuestas </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id="headingTwo">
-                                                    <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                  Pregunta #2
-                                                </a>
-                                              </h5> </div>
-                                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                                    <div class="card-body"> Respuestas </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header" role="tab" id="headingThree">
-                                                    <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                  Pregunta #3
-                                                </a>
-                                              </h5> </div>
-                                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                                                    <div class="card-body">Respuestas</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        
                         <!-- ============================================================== -->
                         <!-- End Messages -->
                         <!-- ============================================================== -->
@@ -145,18 +100,10 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
+                                    
                                     
                                     <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
@@ -175,46 +122,18 @@
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
-                <!-- User profile -->
-                <div class="user-profile">
-                    <!-- User profile image -->
-                    <div class="profile-img"> <img src="../assets/images/users/1.jpg" alt="user" /> 
-                             <!-- this is blinking heartbit-->
-                            <div class="notify setpos"> <span class="heartbit"></span> <span class="point"></span> </div>
-                    </div>
-                    <!-- User profile text-->
-                    <div class="profile-text"> 
-                            <h5>Usuario</h5>
-                            <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="mdi mdi-settings"></i></a>
-                             <a href="app-email.html" class="" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-                            <a href="pages-login.html" class="" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
-
-                        <div class="dropdown-menu animated flipInY">
-                        <!-- text--> 
-                        <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
-                        <!-- text-->  
-                        <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
-                        <!-- text-->  
-                        <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
-                        <!-- text--> 
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->  
-                        <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                        <!-- text--> 
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->  
-                        <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
-                        <!-- text-->  
-                        </div>
-                    </div>
-                </div>
-                <!-- End User profile text-->
+                
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                          <li class="nav-devider"></li>
-                        <li><a class="waves-effect waves-dark" href="{{ route('encuestas.index') }}"><i class="mdi mdi-calendar-question"></i>Encuestas</a></li>
-                        <li><a class="waves-effect waves-dark" href="{{ route('respuesta.index') }}"><i class="mdi mdi-calendar-question"></i>Tipo repuestas </a></li>
+
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-calendar-question"></i><span class="hide-menu">Encuestas</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('encuestas.index') }}">Listar Encuestas </a></li>
+                                <li><a href="{{ route('respuesta.index') }}">Listar Respuestas </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -260,7 +179,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Admin Press Admin by themedesigner.in
+                © 2018 Administrador de encuestas
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
