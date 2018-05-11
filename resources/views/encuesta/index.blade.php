@@ -35,7 +35,7 @@
                         @foreach ($encuestas as $key => $encuesta)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td><a class="" href="{{ route('encuestas.index',$encuesta->id) }}" data-nombre="{{$encuesta->nombre}}">{{ $encuesta->nombre }}</a></td>
+                                <td>{{ $encuesta->nombre }}</td>
                                 <td>0</td>
                                 <td>0</td>
                                 

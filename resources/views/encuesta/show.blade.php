@@ -71,19 +71,6 @@
                                     @else
                                         <div>no existen repuestas registras</div>
                                     @endif
-                                        {{-- <div class="col-xs-12 col-sm-3 text-center" >
-                                            <div class=""><span style="padding-right:10px;">A</span> <select><option>si</option></select></div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3 text-center" >
-                                            <span style="padding-right:10px;">B</span> <select><option>no</option></select>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3 text-center" >
-                                            <span style="padding-right:10px;">C</span> <select><option>no se</option></select>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3 text-center" >
-                                            <span style="padding-right:10px;">D</span> <select><option>tal vez</option></select>
-                                        </div>
-                                    </div> --}}
                                 </tr>
                                 <tr>
                                     <td colspan="5"> <hr></td>

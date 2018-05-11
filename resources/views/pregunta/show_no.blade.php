@@ -1,7 +1,7 @@
 @extends('layouts.app2')
  
 @section('nombreEncuesta')
-<a class="waves-effect waves-dark" href="{{ route('encuesta.index') }}">{{$encuesta->nombre}}</a>
+<a class="waves-effect waves-dark" href="{{ route('encuestas.index') }}">{{$encuesta->nombre}}</a>
 @endsection
 
  
