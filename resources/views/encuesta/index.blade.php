@@ -16,8 +16,9 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="pull-left" style="margin-bottom: 20px;">
-                    <a href="" class="btn btn-info" data-toggle="modal" data-target="#myModalCrear">Crear Encuesta</a>
+                    <a href="" class="btn btn-info" data-toggle="modal" data-target="#crear-encuesta">Crear Encuesta</a>
                 </div>
+                @include('encuesta.partials.modal_create')
             </div>
  
             <table class="table table-bordered table-stripped" id="encuestas-table">
@@ -36,21 +37,34 @@
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $encuesta->nombre }}</td>
-                                <td>0</td>
-                                <td>0</td>
+                                @if(count($encuesta->preguntas) >0)
+                                    <td>{{ count($encuesta->preguntas) }}</td>
+                                @else
+                                    <td>0</td>
+                                @endif
+                                @if(count($encuesta->participantes) > 0)
+                                    <td>{{ count($encuesta->participantes) }}</td>
+                                @else
+                                    <td>0</td>
+                                @endif
                                 
                                 <td>
                                     <a class="btn btn-info" href="{{ route('encuestas.show',$encuesta->id) }}" title="Preguntas"><i class="mdi mdi-format-list-bulleted"></i></a>
-                                    <a class="btn btn-primary editar" href="#" title="Editar" data-nombre="{{$encuesta->nombre}}" data-id="{{$encuesta->id}}"><i class="mdi mdi-table-edit"></i></a>
-                                    {{ Form::open(['method' => 'DELETE','route' => ['encuestas.destroy', $encuesta->id],'style'=>'display:inline']) }}
-                                    <button type="submit" value="Submit" class="btn btn-danger" title="Eliminar"><i class="mdi mdi-delete-forever"></i></button>
-                                    {{ Form::close() }}
+                                   
+                                    <button value="{{$encuesta->id}}" data-toggle="modal" data-target="#edit_encuesta{{$encuesta->id}}" class="btn btn-warning">
+                                            <i class="mdi mdi-table-edit"></i>
+                                    </button>
+                                    @include('encuesta.partials.modal_edit')
+                                    <button value="{{$encuesta->id}}" data-toggle="modal" data-target="#delete_encuesta{{$encuesta->id}}" class="btn btn-danger">
+                                            <i class="mdi mdi-delete-forever"></i>
+                                    </button>
+                                    @include('encuesta.partials.modal_delete')
                                 </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="4">Tasks not found!</td>
+                            <td colspan="4">No hay encuestas registradas</td>
                         </tr>
                     @endif
                 </tbody>
@@ -59,91 +73,7 @@
  
         </div>
     </div>
-    <!-- Modal -->
-    <div id="myModalMensaje" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Mensaje</h4>
-                </div>
-                <div class="modal-body" id="contentBody">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Modal Crear-->
-    <div id="myModalCrear" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Crear Encuesta</h4>
-                </div>
-                {{ Form::open(array('route' => 'encuestas.store', 'method' => 'post')) }}
-                <div class="modal-body" id="contentBody">
-                    
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        {{ Form::text('nombre', '', array('id' => 'encuestaNombre', 'class' => 'form-control input-sm', 'placeholder' => 'Nombre de la encuesta')) }}
-                    </div>
-                    
-                    
-                    <hr>
-                    
-                </div>
-                <div class="modal-footer">
-                    {{ Form::submit('Guardar', array('class' => 'btn btn-info')) }}
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-                {{ Form::close() }}
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Modal Editar-->
-    <div id="myModalEditar" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Editar Encuesta</h4>
-                </div>
-                <form action="{{ route('encuestas.update','XXX') }}" method = 'put' id="formEditar">
-                {{@csrf}}
-                <div class="modal-body" id="contentBody">
-                    
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control input-sm"/>
-                    </div>                    
-                    <hr>
-                    
-                </div>
-                <div class="modal-footer">
-                    
-                    <button type="submit" class="btn btn-info" data-dismiss="modal" id="botonEditar">Guardar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
- 
+   
 @stop
 @section('codigo_js')
 <script>
@@ -152,8 +82,8 @@ $(document).ready( function () {
     if(mensaje != ""){
         //alert("{{$mensaje}}")
 
-        $("#contentBody").html("{{$mensaje}}");
-        $("#myModalMensaje").modal('show');
+        //$("#contentBody").html("{{$mensaje}}");
+        //$("#myModalMensaje").modal('show');
     }
 
     $('.editar').click(function(e) {
