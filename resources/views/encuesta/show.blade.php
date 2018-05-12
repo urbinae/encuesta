@@ -122,7 +122,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       @if ($preguntas != null)
+                       @if (count($preguntas) > 0)
                        @foreach ($preguntas as $key => $pregunta)
                        <tr>
                         <td><center>
@@ -146,31 +146,32 @@
                         <tr>
                             <td>
                                 <div class="row">
-                                    @if ($respuestas != null)
-                                    Respuestas
-                                    <ul>
-                                    @foreach ($letras as $key => $letra)
-                                    <li>
-                                    <div class="col-xs-12 col-sm-3 text-center" >
-                                        <span style="padding-right:10px;">{{$letra}}</span>
-                                        <select class="select-resp">
-                                            @foreach ($respuestas as $key => $respuesta)
+                                        @if ($respuestas != null)
+                                        <div class="col-md-5 align-self-center">
+                                            <h3 class="text-themecolor">Respuestas </h3>
+                                        </div>
+                                            <ul>
+                                                @foreach ($letras as $key => $letra)
+                                                <li>
+                                                    <div class="col-xs-12 col-sm-3 text-center" >
+                                                        <span style="padding-right:10px;">{{$letra}}</span>
+                                                        <select class="select-resp">
+                                                            @foreach ($respuestas as $key => $respuesta)
 
-                                            <option value="{{$respuesta->id}}">{{$respuesta->nombre}}</option>
+                                                            <option value="{{$respuesta->id}}">{{$respuesta->nombre}}</option>
 
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    </li>
-                                    @endforeach
-                                    </ul>
-                                    @else
-                                    <div>No hay registros</div>
-                                    @endif
-                                </tr>
-                                <tr>
-                                    <td colspan="5"> <hr></td>
-                                </tr>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>                                    
+                                        @else
+                                            <div>No hay registros</div>
+                                        @endif
+                                </div>
+                            </td>
+                        </tr>
                                 @endforeach
                                 @else
                                 <tr>
