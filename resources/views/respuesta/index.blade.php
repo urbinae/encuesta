@@ -26,14 +26,14 @@
                        @foreach ($respuestas as $key => $respuesta)
                        <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $respuesta->nombre }}</td>
+                        <td><div class="dblclick" id="{{ $respuesta->id }}" data-id="{{ $respuesta->id }}">{{ $respuesta->nombre }}</div></td>
 
                         <td>
-                            <button value="{{$respuesta->id}}" data-toggle="modal" data-target="#edit_respuesta{{$respuesta->id}}" class="btn btn-warning">
+                            {{-- <button value="{{$respuesta->id}}" data-toggle="modal" data-target="#edit_respuesta{{$respuesta->id}}" class="btn btn-warning">
                                 <i class="mdi mdi-table-edit"></i>
                             </button>
                             @include('respuesta.partials.modal_edit')
-
+                            --}}
                             <button value="{{$respuesta->id}}" data-toggle="modal" data-target="#delete_respuesta{{$respuesta->id}}" class="btn btn-danger">
                                 <i class="mdi mdi-delete-forever"></i>
                             </button>
@@ -52,5 +52,31 @@
     </div>
 </div>
 </div>
+@stop
+@section('codigo_js')
+<script>
+    $(document).ready( function () {
+        var id= 0;
+        var url ="";
+        var mensaje = "{{$mensaje}}"
+        $(".dblclick").dblclick(function(e){
+            e.preventDefault();
+            
+            id= $(this).data('id');
+            url = "{{ route('respuesta.update','XXYY') }}";
 
+            url = url.replace('XXYY',$(this).data('id'));
+            //alert($(this).data('value'));
+        }); 
+
+        $(".dblclick").editable(url, { 
+            //indicator : "<img src='img/indicator.gif'>",
+            tooltip   : "Doubleclick to edit...",
+                //data : "{'value':'valor'}",
+                method : 'POST',
+                event     : "dblclick",
+            //style  : "inherit"
+        });
+    });
+</script>
 @endsection

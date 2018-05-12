@@ -47,15 +47,17 @@
                         @endif
                         
                         <td>
-                            <a class="btn btn-info" href="{{ route('encuestas.show',$encuesta->id) }}" title="Preguntas"><i class="mdi mdi-format-list-bulleted"></i></a>
-                            
+                            <a class="btn btn-info" href="{{ route('pregunta.show',$encuesta->id) }}" title="Preguntas"><i class="mdi mdi-format-list-bulleted"></i></a>
+                            {{-- 
                             <button value="{{$encuesta->id}}" data-toggle="modal" data-target="#edit_encuesta{{$encuesta->id}}" class="btn btn-warning">
                                 <i class="mdi mdi-table-edit"></i>
                             </button>
                             @include('encuesta.partials.modal_edit')
+                            --}}
                             <button value="{{$encuesta->id}}" data-toggle="modal" data-target="#delete_encuesta{{$encuesta->id}}" class="btn btn-danger">
                                 <i class="mdi mdi-delete-forever"></i>
                             </button>
+                            
                             @include('encuesta.partials.modal_delete')
                         </td>
                     </tr>

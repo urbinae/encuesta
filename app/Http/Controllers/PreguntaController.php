@@ -59,7 +59,7 @@ class PreguntaController extends Controller
         $respuestas = Respuesta::all();
         $encuesta = Encuesta::find($request->idEncuesta);
         $preguntas = Encuesta::find($request->idEncuesta)->preguntas()->get();
-        return redirect()->route('encuestas.show', $request->idEncuesta)->with('preguntas', 'mensaje','respuestas','encuesta');
+        return redirect()->route('pregunta.show', $request->idEncuesta)->with('preguntas', 'mensaje','respuestas','encuesta');
     }
 
     /**
@@ -100,7 +100,29 @@ class PreguntaController extends Controller
      */
     public function edit(Request $request,$id = null)
     {
-        if($id)
+        if($request->respuestasIds != null and $id != null  and $request->letra_select != null )
+        {
+            echo $pregunta   = Pregunta::find($id);
+            $ids = explode(',',$request->respuestasIds);
+            $a = $ids[0];
+            $b = $ids[1];
+            $c = $ids[2];
+            $d = $ids[3];
+            $repuestaA   = Respuesta::find($a);
+            $repuestaB   = Respuesta::find($b);
+            $repuestaC   = Respuesta::find($c);
+            $repuestaD   = Respuesta::find($d);
+                       
+            $pregunta->respuestas()->detach();
+            $pregunta->respuestas()->attach($repuestaA, ['letra' => 'A']);
+            $pregunta->respuestas()->attach($repuestaB, ['letra' => 'B']);
+            $pregunta->respuestas()->attach($repuestaC, ['letra' => 'C']);
+            $pregunta->respuestas()->attach($repuestaD, ['letra' => 'D']);
+            //$pregunta->respuestas()->attach([$repuestaA => ['letra' => 'A'], $repuestaB => ['letra' => 'B'],$repuestaC => ['letra' => 'C'], $repuestaD => ['letra' => 'D']]);
+
+        }
+
+        if($id and $request->idEncuesta != null)
         {
             $request->idEncuesta;
             

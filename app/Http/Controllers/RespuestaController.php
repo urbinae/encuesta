@@ -103,7 +103,8 @@ class RespuestaController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $respuesta = Respuesta::find($id);
+        /*
+        $respuesta = Respuesta::find($id);
         
         ///respuesta::destroy($id);
         if($respuesta != "")
@@ -116,6 +117,16 @@ class RespuestaController extends Controller
         $respuestas = respuesta::orderBy('nombre','ASC')->paginate(5);
         //return view('respuesta.index',compact('respuestas', 'mensaje'))->with('i');
         return redirect()->route('respuesta.index');
+        */
+
+        if($request->value != "")
+        {
+            $respuesta = Respuesta::find($request->id);
+            $respuesta->nombre = $request->value;
+            $respuesta->save();
+            //return response()->json($request->value)->header('Content-Type', 'application/json');
+        }
+        return $request->value;
     }
 
     /**

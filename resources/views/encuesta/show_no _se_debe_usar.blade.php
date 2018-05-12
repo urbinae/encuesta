@@ -49,9 +49,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tiempo" class="col-md-2 col-form-label">Tiempo</label>
-                    <div class="col-md-10">
-                        {{ Form::number('tiempo', '0', array('id' => 'tiempo', 'class' => 'form-control')) }}
+                    <label for="tiempo" class="col-md-4 col-form-label">Tiempo (seg)</label>
+                    <div class="col-md-8">
+                        {{ Form::number('tiempo', '0', array('id' => 'tiempo', 'class' => 'form-control', 'min' => 0, 'placeholder' => 'Tiempo en segundos')) }}
                     </div>
                 </div>
 
@@ -85,9 +85,9 @@
                         <input type="text" name="nombre" id="nombre" class="form-control input-sm"/>
                     </div>                    
                     <div class="form-group row">
-                        <label for="example-number-input" class="col-md-2 col-form-label">Tiempo</label>
+                        <label for="tiempo-preg" class="col-md-2 col-form-label">Tiempo</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="tiempo" value="42" id="tiempo-preg">
+                            <input class="form-control" type="number" value="42" id="tiempo-preg" min=0>
                         </div>
                     </div>
 
@@ -124,7 +124,7 @@
                     <tbody>
                        @if (count($preguntas) > 0)
                        @foreach ($preguntas as $key => $pregunta)
-                       <tr>
+                       <tr style="">
                         <td><center>
                             <div class="switch">
                                 <label>
@@ -144,18 +144,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="5" style="padding-top: 0;">
                                 <div class="row">
                                         @if ($respuestas != null)
-                                        <div class="col-md-5 align-self-center">
-                                            <h3 class="text-themecolor">Respuestas </h3>
+                                        <div class="col-xs-12 col-md-12 align-self-center">
+                                            <h4 class="text-themecolor">Respuestas </h4>
                                         </div>
-                                            <ul>
+                                    </div>
+                                    <div class="row" style="padding-bottom: 30px; margin-top: -15px;">
+                                            {{-- <ul> --}}
                                                 @foreach ($letras as $key => $letra)
-                                                <li>
-                                                    <div class="col-xs-12 col-sm-3 text-center" >
+                                               {{--  <li> --}}
+                                                    <div class="col-xs-12 col-sm-6 text-center" style="padding-top: 10px">
                                                         <span style="padding-right:10px;">{{$letra}}</span>
-                                                        <select class="select-resp">
+                                                        <select class="select-resp" >
                                                             @foreach ($respuestas as $key => $respuesta)
 
                                                             <option value="{{$respuesta->id}}">{{$respuesta->nombre}}</option>
@@ -163,9 +165,9 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </li>
+                                               {{--  </li> --}}
                                                 @endforeach
-                                            </ul>                                    
+                                            {{-- </ul>     --}}                                
                                         @else
                                             <div>No hay registros</div>
                                         @endif
@@ -185,60 +187,60 @@
             </div>
         </div>
 
-        @stop
-        @section('codigo_js')
-        <script>
-            $(document).ready( function () {
-                var id= 0;
-                var url ="";
-                var mensaje = "{{$mensaje}}"
-                if(mensaje != ""){
-        //alert("{{$mensaje}}")
+@stop
+@section('codigo_js')
+<script>
+    $(document).ready( function () {
+        var id= 0;
+        var url ="";
+        var mensaje = "{{$mensaje}}"
+        if(mensaje != ""){
+            //alert("{{$mensaje}}")
 
-        $("#contentBody").html("{{$mensaje}}");
-        $("#myModalMensaje").modal('show');
-    }
+            $("#contentBody").html("{{$mensaje}}");
+            $("#myModalMensaje").modal('show');
+        }
 
 
-    $(".check").click(function(e){
-        //e.preventDefault();
-        idCheck= $(this).data('id');
-        descripcion = $(this).data('descripcion');
+        $(".check").click(function(e){
+            //e.preventDefault();
+            idCheck= $(this).data('id');
+            descripcion = $(this).data('descripcion');
 
-        url = "{{ route('pregunta.edit','XXYYZZ') }}";
-        url = url.replace('XXYYZZ',$(this).data('id'));
-        //alert(url)
-        $.get(url,{
-            idEncuesta: "{{ $encuesta->id }}"
-        }, function(data, status){
-            //alert("Data: " + data + "\nStatus: " + status);
-            //if('success' == status)
-            //{
-            //    $("#contentBody").html("Ahora esta activa la pregunta <strong>"+descripcion+'</strong>');
-            //    $("#myModalMensaje").modal('show');
-            //}
+            url = "{{ route('pregunta.edit','XXYYZZ') }}";
+            url = url.replace('XXYYZZ',$(this).data('id'));
+            //alert(url)
+            $.get(url,{
+                idEncuesta: "{{ $encuesta->id }}"
+            }, function(data, status){
+                //alert("Data: " + data + "\nStatus: " + status);
+                //if('success' == status)
+                //{
+                //    $("#contentBody").html("Ahora esta activa la pregunta <strong>"+descripcion+'</strong>');
+                //    $("#myModalMensaje").modal('show');
+                //}
 
+            });
+        });
+
+        $(".dblclick").dblclick(function(e){
+            e.preventDefault();
+            
+            id= $(this).data('id');
+            url = "{{ route('pregunta.update','XXYY') }}";
+
+            url = url.replace('XXYY',$(this).data('id'));
+            alert(url);
+        }); 
+
+        $(".dblclick").editable(url, { 
+            //indicator : "<img src='img/indicator.gif'>",
+            tooltip   : "Doubleclick to edit...",
+                //data : "{'value':'valor'}",
+                method : 'PUT',
+                event     : "dblclick",
+            //style  : "inherit"
         });
     });
-
-    $(".dblclick").dblclick(function(e){
-        e.preventDefault();
-        
-        id= $(this).data('id');
-        url = "{{ route('pregunta.update','XXYY') }}";
-
-        url = url.replace('XXYY',$(this).data('id'));
-        //alert($(this).data('value'));
-    }); 
-
-    $(".dblclick").editable(url, { 
-      //indicator : "<img src='img/indicator.gif'>",
-      tooltip   : "Doubleclick to edit...",
-        //data : "{'value':'valor'}",
-        method : 'PUT',
-        event     : "dblclick",
-      //style  : "inherit"
-  });
-});
 </script>
 @endsection
