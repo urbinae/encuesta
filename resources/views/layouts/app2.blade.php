@@ -128,11 +128,11 @@
                     <ul id="sidebarnav">
                          <li class="nav-devider"></li>
 
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-calendar-question"></i><span class="hide-menu">Encuestas</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('encuestas.index') }}">Listar Encuestas </a></li>
-                                <li><a href="{{ route('respuesta.index') }}">Listar Respuestas </a></li>
-                            </ul>
+                        <li> 
+                            <a class="waves-effect waves-dark" href="{{ route('encuestas.index') }}"><i class="mdi mdi-calendar-question"></i><span class="">Encuestas</span></a>
+                        </li>
+                        <li> 
+                            <a class="waves-effect waves-dark" href="{{ route('respuesta.index') }}"><i class="mdi mdi-calendar-question"></i><span class="">Respuestas</span></a>
                         </li>
                     </ul>
                 </nav>
