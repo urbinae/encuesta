@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Respuesta;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class RespuestaController extends Controller
 {
@@ -49,7 +50,6 @@ class RespuestaController extends Controller
     {
         $mensaje = "";
         $id = Auth::id();
-        //$encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
 
         if($request->nombre != "" and $request->isMethod('post'))
         {
@@ -103,7 +103,19 @@ class RespuestaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $respuesta = Respuesta::find($id);
+        
+        ///respuesta::destroy($id);
+        if($respuesta != "")
+        {
+            $respuesta->nombre = $request->nombre;           
+            $respuesta->save();
+            $mensaje = "La respuesta ".$respuesta->nombre." fue editada satisfactoriamente";
+        }
+        
+        $respuestas = respuesta::orderBy('nombre','ASC')->paginate(5);
+        //return view('respuesta.index',compact('respuestas', 'mensaje'))->with('i');
+        return redirect()->route('respuesta.index');
     }
 
     /**
@@ -114,6 +126,12 @@ class RespuestaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $respuesta = Respuesta::find($id);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0'); 
+        $mensaje = "La respuesta ".$respuesta->nombre." fue eliminada";
+        Respuesta::destroy($id);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+        return redirect()->route('respuesta.index');
     }
 }
