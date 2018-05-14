@@ -81,10 +81,12 @@ class PreguntaController extends Controller
             $pregunta->descripcion = "ingrese la 1ra pregunta";
             $pregunta->encuesta_id = $id;
             $pregunta->save();
+            $pregunta->respuestas()->where('pregunta_repuesta', $problem->id)->first()->pivot->letra
            
         }*/
         
         $preguntas = Encuesta::find($id)->preguntas()->get();
+       
         //$encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
         //$preguntas = Pregunta::findOrFail($id);
         //$preguntas = []; //Pregunta::find($id);

@@ -66,8 +66,8 @@
                                                                 <span style="padding-right:10px;">{{$letra}}</span>
                                                                 <select class="select-resp" id="{{$letra}}-{{$pregunta->id}}" data-letra="{{$letra}}" data-id_pregunta="{{$pregunta->id}}">
                                                                     @foreach ($respuestas as $key => $respuesta)
-
-                                                                    <option value="{{$respuesta->id}}">{{$respuesta->nombre}}</option>
+                                                                    
+                                                                    <option value="{{$respuesta->id}}"@if ($pregunta->respuestas()->where('respuestas.id',$respuesta->id)->where('pregunta_repuesta.letra',$letra)->first()) selected ='selected' @endif>{{$respuesta->nombre}}</option>
 
                                                                     @endforeach
                                                                 </select>
@@ -218,7 +218,7 @@ $(document).ready( function () {
         var ids = "";
         for (i = 0; i < letras.length; i++) {
             var cadena = "#"+letras[i]+"-"+id_pregunta;
-            alert($(cadena).val());
+                //alert($(cadena).val());
             if(i == 3)
             {
                 ids += $(cadena).val()
@@ -231,7 +231,7 @@ $(document).ready( function () {
         }
              
 
-        alert('valor ahora ->'+ 'ids'+ids);
+        //alert('valor ahora ->'+ 'ids'+ids);
         //alert($('select[class=select-resp]').val());
         
         var letra_select = $(this).data('letra');
