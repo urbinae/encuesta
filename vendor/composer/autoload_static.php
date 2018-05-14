@@ -271,7 +271,10 @@ class ComposerStaticInit92382cacafca3e7265cff93d7f104c91
         'CreateEncuestasTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_144941_create_encuestas_table.php',
         'CreateParticipantesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_220236_create_participantes_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePreguntaTipoRepuestaTable' => __DIR__ . '/../..' . '/database/migrations/2018_05_12_165157_create_pregunta_tipo_repuesta_table.php',
+        'CreatePreguntasParticipantesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_221113_create_preguntas_participantes_table.php',
         'CreatePreguntasTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_221111_create_preguntas_table.php',
+        'CreateRespuestasTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_221112_create_respuestas_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -789,8 +792,6 @@ class ComposerStaticInit92382cacafca3e7265cff93d7f104c91
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
-        'UpdateParticipantesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_222622_update_participantes_table.php',
-        'UpdatePreguntasTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_30_222609_update_preguntas_table.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

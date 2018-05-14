@@ -91,7 +91,7 @@ class EncuestaController extends Controller
             
         }
         $encuestas = Encuesta::orderBy('nombre','ASC')->paginate(5);
-        return view('encuesta.index',compact('encuestas', 'mensaje'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return redirect()->route('encuestas.index');
     }
 
     /**

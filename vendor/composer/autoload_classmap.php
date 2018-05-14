@@ -9,7 +9,10 @@ return array(
     'CreateEncuestasTable' => $baseDir . '/database/migrations/2018_04_30_144941_create_encuestas_table.php',
     'CreateParticipantesTable' => $baseDir . '/database/migrations/2018_04_30_220236_create_participantes_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePreguntaTipoRepuestaTable' => $baseDir . '/database/migrations/2018_05_12_165157_create_pregunta_tipo_repuesta_table.php',
+    'CreatePreguntasParticipantesTable' => $baseDir . '/database/migrations/2018_04_30_221113_create_preguntas_participantes_table.php',
     'CreatePreguntasTable' => $baseDir . '/database/migrations/2018_04_30_221111_create_preguntas_table.php',
+    'CreateRespuestasTable' => $baseDir . '/database/migrations/2018_04_30_221112_create_respuestas_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -527,6 +530,4 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
-    'UpdateParticipantesTable' => $baseDir . '/database/migrations/2018_04_30_222622_update_participantes_table.php',
-    'UpdatePreguntasTable' => $baseDir . '/database/migrations/2018_04_30_222609_update_preguntas_table.php',
 );

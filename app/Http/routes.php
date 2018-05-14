@@ -30,7 +30,7 @@ Route::get('encuestas', [
 // rest para preguntas
 Route::resource('pregunta','PreguntaController');
 
-// rest para repuesta
+// rest para respuesta
 Route::resource('respuesta','RespuestaController');
 
 // las encuestas para motrar en el data table
